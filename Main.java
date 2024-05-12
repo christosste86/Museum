@@ -36,7 +36,10 @@ public class Main {
             System.out.println("Please reserve your -- Ticket --");
 
             //insert reservation date with specific format
-            System.out.print("Please reserve to 30 days " + LocalDate.now().plusDays(30) + " use format --> 20.01.2000 <-- : ");
+
+            boolean checkDateFormat = false;
+
+            System.out.print("Please reserve to " + LocalDate.now().plusDays(30).format(format) + " use format --> 20.01.2000 <-- : ");
             String inputDate = scanner.nextLine();
             LocalDate reservationDate = LocalDate.parse(inputDate, format);
 
@@ -123,26 +126,26 @@ public class Main {
         //generate the date to number
         System.out.print("Insert date from: ");
         String dateF = scanner.nextLine();
-        LocalDate localDate = LocalDate.parse(dateF, format);
-        int dateFrom = arrayDate(localDate);
+        LocalDate datefr = LocalDate.parse(dateF, format);
+        int intdateFrom = arrayDate(datefr);
 
         System.out.println();
 
         System.out.print("Insert date to: ");
         String dateT = scanner.nextLine();
-        localDate = LocalDate.parse(dateT, format);
-        int dateTo = arrayDate(localDate);
+        LocalDate dateTo = LocalDate.parse(dateT, format);
+        int intdateTo = arrayDate(dateTo);
 
-        System.out.println("Reservations from "+reservations[0][dateFrom]+" - "+reservations[0][dateTo]);
-        for(int i = dateTo; i < dateTo; i++){
+        System.out.println("Reservations from "+reservations[0][intdateFrom]+" - "+reservations[0][intdateTo]);
+        for(int i = intdateTo; i < intdateTo; i++){
             System.out.printf("|%-25S|",reservations[0][i]);
         }
         System.out.println();
-        for(int i = dateTo; i < dateTo; i++){
+        for(int i = intdateTo; i < intdateTo; i++){
             System.out.printf("|%-25S|",reservations[1][i]);
         }
         System.out.println();
-        for(int i = dateTo; i < dateTo; i++) {
+        for(int i = intdateTo; i < intdateTo; i++) {
             System.out.printf("|%-25s|", reservations[2][i]);
         }
 
