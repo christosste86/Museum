@@ -18,6 +18,6 @@ public class Tickets {
         this.discount = discount;
     }
     void discount(){
-
+        
     }
 }

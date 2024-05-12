@@ -42,4 +42,7 @@ public class Customers {
     public String getStatus() {
         return status;
     }
+
+    public Customers() {
+    }
 }
