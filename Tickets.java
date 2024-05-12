@@ -1,5 +1,5 @@
 public class Tickets {
-    private boolean price;
+    private double price;
     private int maxTicketsPerDay;
     private int discount;
 
@@ -9,7 +9,7 @@ public class Tickets {
     private int child;
     private int normal;
 
-    public Tickets(boolean price, int maxTicketsPerDay) {
+    public Tickets(double price, int maxTicketsPerDay) {
         this.price = price;
         this.maxTicketsPerDay = maxTicketsPerDay;
     }
@@ -18,6 +18,6 @@ public class Tickets {
         this.discount = discount;
     }
     void discount(){
-        
+
     }
 }
