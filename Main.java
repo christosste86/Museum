@@ -60,8 +60,8 @@ public class Main {
             //check if tickets are more than max museum seats per day
             boolean result = false;
             while (result == false) {
-                if (((int) reservations[2][arrayDate(reservationDate)]) + tickets > 10) {
-                    System.out.println("You can reserve Max " + (10 - ((int) reservations[2][arrayDate(reservationDate)])));
+                if (((int) reservations[12][arrayDate(reservationDate)]) + tickets > 10) {
+                    System.out.println("You can reserve Max " + (10 - ((int) reservations[12][arrayDate(reservationDate)])));
                     result = false;
                     tickets = scanner.nextInt();
                 } else {
@@ -69,47 +69,50 @@ public class Main {
                 }
 
             }
+            int customersReservations = tickets;
+            while (customersReservations > 0) {
+                customersReservations = customersReservations - 1;
+                //Type customer contacts
+                System.out.print("Name: ");
+                customer.setUsername(scanner.nextLine());
+                scanner.nextLine();
+                System.out.print("Surname: ");
+                customer.setSurename(scanner.nextLine());
+                System.out.print("Age: ");
+                customer.setAge(scanner.nextLine());
+                System.out.print("Status (Student, Invalid, Pensioner, Child): ");
+                String statusValue = scanner.nextLine();
 
-            //Type customer contacts
-            System.out.print("Name: ");
-            customer.setUsername(scanner.nextLine());
-            scanner.nextLine();
-            System.out.print("Surname: ");
-            customer.setSurename(scanner.nextLine());
-            System.out.print("Age: ");
-            customer.setAge(scanner.nextLine());
-            System.out.print("Status (Student, Invalid, Pensioner, Child): ");
-            String statusValue = scanner.nextLine();
-
-            //check the status if is correct
-            boolean statusResult = false;
-            while (statusResult == false){
-                if (statusValue.isEmpty()) {
-                    customer.setStatus("Normal");
-                    statusResult = true;
-                } else if (statusValue.equalsIgnoreCase("student")) {
-                    customer.setStatus("Student");
-                    statusResult = true;
-                } else if (statusValue.equalsIgnoreCase("Invalid")) {
-                    customer.setStatus("Invalid");
-                    statusResult = true;
-                } else if (statusValue.equalsIgnoreCase("Pensioner")) {
-                    customer.setStatus("Pensioner");
-                    statusResult = true;
-                } else if (statusValue.equalsIgnoreCase("Pensioner")) {
-                    customer.setStatus("Pensioner");
-                    statusResult = true;
-                }else {
-                    System.out.print("Please type your status corect: ");
-                    statusResult = false;
+                //check the status if is correct
+                boolean statusResult = false;
+                while (statusResult == false) {
+                    if (statusValue.isEmpty()) {
+                        customer.setStatus("Normal");
+                        statusResult = true;
+                    } else if (statusValue.equalsIgnoreCase("student")) {
+                        customer.setStatus("Student");
+                        statusResult = true;
+                    } else if (statusValue.equalsIgnoreCase("Invalid")) {
+                        customer.setStatus("Invalid");
+                        statusResult = true;
+                    } else if (statusValue.equalsIgnoreCase("Pensioner")) {
+                        customer.setStatus("Pensioner");
+                        statusResult = true;
+                    } else if (statusValue.equalsIgnoreCase("Pensioner")) {
+                        customer.setStatus("Pensioner");
+                        statusResult = true;
+                    } else {
+                        System.out.print("Please type your status corect: ");
+                        statusResult = false;
+                    }
                 }
-            }
 
-            //set to calendar reservation data
-            for (int i = 0; i < 30; i++) {
-                if (reservations[0][i].toString().equals(inputDate)) {
-                    reservations[1][i] = customer.getUsername() + ", " + customer.getSurname() + ", ";
-                    reservations[12][i] = tickets + (int) reservations[2][i];
+                //set to calendar reservation data
+                for (int i = 0; i < 30; i++) {
+                    if (reservations[0][i].toString().equals(inputDate)) {
+                        reservations[1][i] = customer.getUsername() + ", " + customer.getSurname() + ", ";
+                        reservations[12][i] = tickets + (int) reservations[12][i];
+                    }
                 }
             }
 
@@ -156,7 +159,7 @@ public class Main {
         }
         System.out.println();
         for(int i = intdateFrom; i <= intdateTo; i++) {
-            System.out.printf("|%-25s|", reservations[2][i]);
+            System.out.printf("|%-25s|", reservations[12][i]);
         }
 
     }
@@ -184,5 +187,14 @@ public class Main {
             reservations[0][i] = localDate.format(format);
             reservations[12][i] = 0;
         }
+    }
+    static int emptyArray(Object [][] reservations, int x){
+        int i = 0;
+        for (i = 0; i < reservations.length;i++){
+            if (!(reservations[i][x] == null)){
+                return i;
+            }
+        }
+        return i;
     }
 }
