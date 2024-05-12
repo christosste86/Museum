@@ -3,10 +3,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("");
 
+
+    public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -30,6 +29,15 @@ public class Main {
             System.out.println("Welcome to Greek Mythology Museum");
             System.out.println("Please reserve your -- Ticket --");
 
+            System.out.print("Please reserve to 30 days " + LocalDate.now().plusDays(30) + " use format --> 2000-01-20 <-- : ");
+            String inputDate = scanner.nextLine();
+            LocalDate reservationDate = LocalDate.parse(inputDate, format);
+//            for (int i = 0; i < 30;i++){
+//
+//            }
+            int tickets = 0;
+            System.out.print("How many Tickets do you want to reserve? : ");
+            tickets = scanner.nextInt();
             System.out.print("Name: ");
             customer.setUsername(scanner.nextLine());
             scanner.nextLine();
@@ -46,10 +54,7 @@ public class Main {
             } else {
                 customer.setStatus(statusValue);
             }
-            System.out.print("Please reserve to 30 days " + LocalDate.now().plusDays(30) + " use format --> 2000-01-20 <-- : ");
-            String inputDate = scanner.nextLine();
-            System.out.print("How many Tickets do you want to reserve? : ");
-            int tickets = scanner.nextInt();
+
             for (int i = 0; i < 30; i++) {
                 if (reservations[0][i].toString().equals(inputDate)) {
                     reservations[1][i] = customer.getUsername() + ", " + customer.getSurname() + ", " + tickets;
@@ -79,10 +84,13 @@ public class Main {
         }
 
     }
-    static void setCalendar (Object [][] rezervations){
+    static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    static void setCalendar (Object [][] reservations){
+
         for (int i = 0; i<30; i++ ){
-            rezervations[0][i] = LocalDate.now().plusDays(i);
-            rezervations[2][i] = 0;
+            LocalDate localDate = LocalDate.parse(LocalDate.now().plusDays(i).toString());
+            reservations[0][i] = localDate.format(format);
+            reservations[2][i] = 0;
         }
     }
 }
