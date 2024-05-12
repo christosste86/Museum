@@ -133,12 +133,13 @@ public class Main {
         //insert date from to date you see the reservations
 
         //generate the date to number
+        scanner.nextLine(); //repair a problem with next scanner
         System.out.print("Insert date from: ");
         String dateF = scanner.nextLine();
         LocalDate datefr = LocalDate.parse(dateF, format);
         int intdateFrom = arrayDate(datefr);
 
-        System.out.println();
+        //System.out.println();
 
         System.out.print("Insert date to: ");
         String dateT = scanner.nextLine();
@@ -146,15 +147,15 @@ public class Main {
         int intdateTo = arrayDate(dateTo);
 
         System.out.println("Reservations from "+reservations[0][intdateFrom]+" - "+reservations[0][intdateTo]);
-        for(int i = intdateTo; i < intdateTo; i++){
+        for(int i = intdateFrom; i <= intdateTo; i++){
             System.out.printf("|%-25S|",reservations[0][i]);
         }
         System.out.println();
-        for(int i = intdateTo; i < intdateTo; i++){
+        for(int i = intdateFrom; i <= intdateTo; i++){
             System.out.printf("|%-25S|",reservations[1][i]);
         }
         System.out.println();
-        for(int i = intdateTo; i < intdateTo; i++) {
+        for(int i = intdateFrom; i <= intdateTo; i++) {
             System.out.printf("|%-25s|", reservations[2][i]);
         }
 
@@ -181,7 +182,7 @@ public class Main {
         for (int i = 0; i<30; i++ ){
             LocalDate localDate = LocalDate.parse(LocalDate.now().plusDays(i).toString());
             reservations[0][i] = localDate.format(format);
-            reservations[2][i] = 0;
+            reservations[12][i] = 0;
         }
     }
 }
