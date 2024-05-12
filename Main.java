@@ -38,10 +38,19 @@ public class Main {
             //insert reservation date with specific format
 
             boolean checkDateFormat = false;
-
-            System.out.print("Please reserve to " + LocalDate.now().plusDays(30).format(format) + " use format --> 20.01.2000 <-- : ");
-            String inputDate = scanner.nextLine();
-            LocalDate reservationDate = LocalDate.parse(inputDate, format);
+            String inputDate = null;
+            LocalDate reservationDate = LocalDate.now();
+            while (checkDateFormat == false) {
+                System.out.print("Please reserve to " + LocalDate.now().plusDays(30).format(format) + " use format --> 20.01.2000 <-- : ");
+                inputDate = scanner.nextLine();
+                try {
+                    reservationDate = LocalDate.parse(inputDate, format);
+                    checkDateFormat = true;
+                } catch (Exception in){
+                    System.out.print("Plsease insert correct date: ");
+                    checkDateFormat = false;
+                }
+            }
 
             //insert how many tickets you want to reserve
             int tickets = 0;
