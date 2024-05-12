@@ -17,6 +17,7 @@ public class Tickets {
     public Tickets(int discount) {
         this.discount = discount;
     }
+    void discount(){
 
-
+    }
 }
