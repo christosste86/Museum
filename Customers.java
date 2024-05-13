@@ -3,12 +3,23 @@ public class Customers {
     private String surname;
     private String age;
     private String status;
+    private double payment;
+    Tickets ticketPrice = new Tickets();
 
-    public Customers(String username, String surname, String age, String status) {
+    public Customers(String username, String surname, String age, String status, double Payment) {
         this.username = username;
         this.surname = surname;
         this.age = age;
         this.status = status;
+        this.payment = Payment;
+    }
+
+    public double getPayment() {
+        return payment;
+    }
+
+    public void setPayment(double payment) {
+        this.payment = payment;
     }
 
     public void setUsername(String username) {

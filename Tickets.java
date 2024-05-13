@@ -1,23 +1,37 @@
 public class Tickets {
-    private double price;
+    private double ticketPrice = 950;
     private int maxTicketsPerDay;
     private int discount;
 
-    private int student;
-    private int invalid;
-    private int pensioner;
-    private int child;
-    private int normal;
+    public double getTicketPrice() {
+        return ticketPrice;
+    }
 
-    public Tickets(double price, int maxTicketsPerDay) {
-        this.price = price;
+    public Tickets(double ticketPrice, int maxTicketsPerDay) {
+        this.ticketPrice = ticketPrice;
         this.maxTicketsPerDay = maxTicketsPerDay;
+    }
+
+    public Tickets() {
     }
 
     public Tickets(int discount) {
         this.discount = discount;
     }
-    void discount(){
-
-    }
+//    public void discount(status) {
+//        if (status.equals("Student")) {
+//            price = (price - (price * 30) / 100);
+//        } else if (status.equals("Invalid")) {
+//            price = (price - (price * 70) / 100);
+//        }
+//        else if (status.equals("Pensioner")) {
+//            price = (price - (price * 50) / 100);
+//        }
+//        else if (status.equals("Child")) {
+//            price = (price - (price * 50) / 100);
+//        }
+//        else if (status.equals("Normal")) {
+//            price = (price - (price * 100) / 100);
+//        }
+//    }
 }

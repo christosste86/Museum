@@ -11,11 +11,7 @@ public class Main {
 
         Customers customer = new Customers();
 
-        Tickets student = new Tickets(30);
-        Tickets invalid = new Tickets(60);
-        Tickets pensioner = new Tickets(50);
-        Tickets child = new Tickets(100);
-        Tickets[] status = {student,invalid,pensioner,child};
+        Tickets ticketPrice = new Tickets();
 
         //Calendar reservations = new Calendar(new Integer[30][10]);
 
@@ -30,10 +26,14 @@ public class Main {
         //Create a loop to start new reservation
         boolean menuResult = false;
         while (menuResult == false) {
-
             //welcome page
-            System.out.println("Welcome to Greek Mythology Museum");
-            System.out.println("Please reserve your -- Ticket --");
+            System.out.println("--------------Welcome to Greek Mythology Museum---------------");
+            System.out.println("              Please reserve your -- Ticket --");
+            System.out.println("Price of ticket is "+ticketPrice.getTicketPrice()+" Kč");
+            System.out.println("--------------------------------------------------------------");
+            System.out.println("                         Discounts");
+            System.out.println("Student: -30% | Invalid: - 70% | Pensioner: -50% | Child: -60%");
+            System.out.println("--------------------------------------------------------------");
 
             //insert reservation date with specific format
 
@@ -81,36 +81,43 @@ public class Main {
                 System.out.print("Age: ");
                 customer.setAge(scanner.nextLine());
                 System.out.print("Status (Student, Invalid, Pensioner, Child): ");
-                String statusValue = scanner.nextLine();
 
                 //check the status if is correct
                 boolean statusResult = false;
                 while (statusResult == false) {
+                    String statusValue = scanner.nextLine();
                     if (statusValue.isEmpty()) {
                         customer.setStatus("Normal");
+                        customer.setPayment(ticketPrice.getTicketPrice());
                         statusResult = true;
                     } else if (statusValue.equalsIgnoreCase("student")) {
                         customer.setStatus("Student");
+                        customer.setPayment(ticketPrice.getTicketPrice()-(ticketPrice.getTicketPrice()*30/100));
                         statusResult = true;
                     } else if (statusValue.equalsIgnoreCase("Invalid")) {
                         customer.setStatus("Invalid");
+                        customer.setPayment(ticketPrice.getTicketPrice()-(ticketPrice.getTicketPrice()*70/100));
                         statusResult = true;
                     } else if (statusValue.equalsIgnoreCase("Pensioner")) {
                         customer.setStatus("Pensioner");
+                        customer.setPayment(ticketPrice.getTicketPrice()-(ticketPrice.getTicketPrice()*50/100));
                         statusResult = true;
-                    } else if (statusValue.equalsIgnoreCase("Pensioner")) {
-                        customer.setStatus("Pensioner");
+                    } else if (statusValue.equalsIgnoreCase("Child")) {
+                        customer.setStatus("Child");
+                        customer.setPayment(ticketPrice.getTicketPrice()-(ticketPrice.getTicketPrice()*60/100));
                         statusResult = true;
                     } else {
                         System.out.print("Please type your status corect: ");
                         statusResult = false;
                     }
                 }
+                System.out.println(emptyArray(reservations, 1));
+
 
                 //set to calendar reservation data
                 for (int i = 0; i < 30; i++) {
                     if (reservations[0][i].toString().equals(inputDate)) {
-                        reservations[1][i] = customer.getUsername() + ", " + customer.getSurname() + ", ";
+                        reservations[emptyArray(reservations, i)][i] = customer.getUsername() + ", " + customer.getSurname() + ", " +customer.getPayment();
                         reservations[12][i] = tickets + (int) reservations[12][i];
                     }
                 }
@@ -158,6 +165,46 @@ public class Main {
             System.out.printf("|%-25S|",reservations[1][i]);
         }
         System.out.println();
+        for(int i = intdateFrom; i <= intdateTo; i++){
+            System.out.printf("|%-25S|",reservations[2][i]);
+        }
+        System.out.println();
+        for(int i = intdateFrom; i <= intdateTo; i++){
+            System.out.printf("|%-25S|",reservations[3][i]);
+        }
+        System.out.println();
+        for(int i = intdateFrom; i <= intdateTo; i++){
+            System.out.printf("|%-25S|",reservations[4][i]);
+        }
+        System.out.println();
+        for(int i = intdateFrom; i <= intdateTo; i++){
+            System.out.printf("|%-25S|",reservations[5][i]);
+        }
+        System.out.println();
+        for(int i = intdateFrom; i <= intdateTo; i++){
+            System.out.printf("|%-25S|",reservations[6][i]);
+        }
+        System.out.println();
+        for(int i = intdateFrom; i <= intdateTo; i++){
+            System.out.printf("|%-25S|",reservations[7][i]);
+        }
+        System.out.println();
+        for(int i = intdateFrom; i <= intdateTo; i++){
+            System.out.printf("|%-25S|",reservations[8][i]);
+        }
+        System.out.println();
+        for(int i = intdateFrom; i <= intdateTo; i++){
+            System.out.printf("|%-25S|",reservations[9][i]);
+        }
+        System.out.println();
+        for(int i = intdateFrom; i <= intdateTo; i++){
+            System.out.printf("|%-25S|",reservations[10][i]);
+        }
+        System.out.println();
+        for(int i = intdateFrom; i <= intdateTo; i++){
+            System.out.printf("|%-25S|",reservations[11][i]);
+        }
+        System.out.println();
         for(int i = intdateFrom; i <= intdateTo; i++) {
             System.out.printf("|%-25s|", reservations[12][i]);
         }
@@ -188,10 +235,12 @@ public class Main {
             reservations[12][i] = 0;
         }
     }
+
+    //empty array check
     static int emptyArray(Object [][] reservations, int x){
         int i = 0;
         for (i = 0; i < reservations.length;i++){
-            if (!(reservations[i][x] == null)){
+            if ((reservations[i][x] == null)){
                 return i;
             }
         }
