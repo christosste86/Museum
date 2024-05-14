@@ -5,7 +5,7 @@ public class Calendar {
     private Object [][] reservations;
 
     public Calendar() {
-        this.reservations = new Object[13][30];
+        this.reservations = new Object[14][30];
     }
 
     static void setDatesInCalendar (Object [][] reservation){

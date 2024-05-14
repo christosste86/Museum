@@ -1,6 +1,6 @@
 public class Tickets {
     private double ticketPrice = 950;
-    private int maxTicketsPerDay;
+    private int maxTicketsPerDay = 10;
     private int discount;
 
     public double getTicketPrice() {

@@ -60,8 +60,8 @@ public class Main {
             //check if tickets are more than max museum seats per day
             boolean result = false;
             while (result == false) {
-                if (((int) reservations[12][arrayDate(reservationDate)]) + tickets > 10) {
-                    System.out.println("You can reserve Max " + (10 - ((int) reservations[12][arrayDate(reservationDate)])));
+                if (((int) reservations[11][arrayDate(reservationDate)]) + tickets > 10) {
+                    System.out.println("You can reserve Max " + (10 - ((int) reservations[11][arrayDate(reservationDate)])));
                     result = false;
                     tickets = scanner.nextInt();
                 } else {
@@ -73,9 +73,9 @@ public class Main {
             while (customersReservations > 0) {
                 customersReservations = customersReservations - 1;
                 //Type customer contacts
+                scanner.nextLine();
                 System.out.print("Name: ");
                 customer.setUsername(scanner.nextLine());
-                scanner.nextLine();
                 System.out.print("Surname: ");
                 customer.setSurename(scanner.nextLine());
                 System.out.print("Age: ");
@@ -111,15 +111,15 @@ public class Main {
                         statusResult = false;
                     }
                 }
-                System.out.println(emptyArray(reservations, 1));
-
 
                 //set to calendar reservation data
                 for (int i = 0; i < 30; i++) {
                     if (reservations[0][i].toString().equals(inputDate)) {
                         reservations[emptyArray(reservations, i)][i] = customer.getUsername() + ", " + customer.getSurname() + ", " +customer.getPayment();
-                        reservations[12][i] = tickets + (int) reservations[12][i];
+                        reservations[11][i] = (int) reservations[11][i] + tickets;
+                        reservations[12][i] = (double) reservations[12][i] + customer.getPayment();
                     }
+                    tickets = 0;
                 }
             }
 
@@ -158,56 +158,105 @@ public class Main {
 
         System.out.println("Reservations from "+reservations[0][intdateFrom]+" - "+reservations[0][intdateTo]);
         for(int i = intdateFrom; i <= intdateTo; i++){
-            System.out.printf("|%-25S|",reservations[0][i]);
+            if (reservations[0][i] == null){
+                System.out.printf("|%-30S|","");
+            }else {
+                System.out.printf("|%-30S|", reservations[0][i]);
+            }
         }
         System.out.println();
         for(int i = intdateFrom; i <= intdateTo; i++){
-            System.out.printf("|%-25S|",reservations[1][i]);
+            if (reservations[1][i] == null){
+                System.out.printf("|%-30S|","");
+            }else {
+                System.out.printf("|%-30S|", reservations[1][i]);
+            }
         }
         System.out.println();
         for(int i = intdateFrom; i <= intdateTo; i++){
-            System.out.printf("|%-25S|",reservations[2][i]);
+            if (reservations[2][i] == null){
+                System.out.printf("|%-30S|","");
+            }else {
+                System.out.printf("|%-30S|", reservations[2][i]);
+            }
         }
         System.out.println();
         for(int i = intdateFrom; i <= intdateTo; i++){
-            System.out.printf("|%-25S|",reservations[3][i]);
+            if (reservations[3][i] == null){
+                System.out.printf("|%-30S|","");
+            }else {
+                System.out.printf("|%-30S|", reservations[3][i]);
+            }
         }
         System.out.println();
         for(int i = intdateFrom; i <= intdateTo; i++){
-            System.out.printf("|%-25S|",reservations[4][i]);
+            if (reservations[4][i] == null){
+                System.out.printf("|%-30S|","");
+            }else {
+                System.out.printf("|%-30S|", reservations[4][i]);
+            }
         }
         System.out.println();
         for(int i = intdateFrom; i <= intdateTo; i++){
-            System.out.printf("|%-25S|",reservations[5][i]);
+            if (reservations[5][i] == null){
+                System.out.printf("|%-30S|","");
+            }else {
+                System.out.printf("|%-30S|", reservations[5][i]);
+            }
         }
         System.out.println();
         for(int i = intdateFrom; i <= intdateTo; i++){
-            System.out.printf("|%-25S|",reservations[6][i]);
+            if (reservations[6][i] == null){
+                System.out.printf("|%-30S|","");
+            }else {
+                System.out.printf("|%-30S|", reservations[6][i]);
+            }
         }
         System.out.println();
         for(int i = intdateFrom; i <= intdateTo; i++){
-            System.out.printf("|%-25S|",reservations[7][i]);
+            if (reservations[7][i] == null){
+                System.out.printf("|%-30S|","");
+            }else {
+                System.out.printf("|%-30S|", reservations[7][i]);
+            }
+        }
+        System.out.println();
+        System.out.println("--------------------------------------------------------------");
+        for(int i = intdateFrom; i <= intdateTo; i++){
+            if (reservations[8][i] == null){
+                System.out.printf("|%-30S|","");
+            }else {
+                System.out.printf("|%-30S|", reservations[8][i]);
+            }
         }
         System.out.println();
         for(int i = intdateFrom; i <= intdateTo; i++){
-            System.out.printf("|%-25S|",reservations[8][i]);
+            if (reservations[9][i] == null){
+                System.out.printf("|%-30S|","");
+            }else {
+                System.out.printf("|%-30S|", reservations[9][i]);
+            }
         }
         System.out.println();
         for(int i = intdateFrom; i <= intdateTo; i++){
-            System.out.printf("|%-25S|",reservations[9][i]);
+            if (reservations[10][i] == null){
+                System.out.printf("|%-30S|","");
+            }else {
+                System.out.printf("|%-30S|", reservations[10][i]);
+            }
         }
         System.out.println();
+        System.out.println("");
         for(int i = intdateFrom; i <= intdateTo; i++){
-            System.out.printf("|%-25S|",reservations[10][i]);
-        }
-        System.out.println();
-        for(int i = intdateFrom; i <= intdateTo; i++){
-            System.out.printf("|%-25S|",reservations[11][i]);
+            System.out.printf("|%-2s %-27S|",reservations[11][i],"Tickets");
         }
         System.out.println();
         for(int i = intdateFrom; i <= intdateTo; i++) {
-            System.out.printf("|%-25s|", reservations[12][i]);
+            System.out.printf("|%-8s%-22S|", reservations[12][i],"Kč");
         }
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("Summary of tickets: ");
+        System.out.println("Earnings: ");
 
     }
     // Methods
@@ -232,7 +281,8 @@ public class Main {
         for (int i = 0; i<30; i++ ){
             LocalDate localDate = LocalDate.parse(LocalDate.now().plusDays(i).toString());
             reservations[0][i] = localDate.format(format);
-            reservations[12][i] = 0;
+            reservations[11][i] = 0;
+            reservations[12][i] = (double) 0;
         }
     }
 
