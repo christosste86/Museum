@@ -53,7 +53,6 @@ public class Main {
                         checkDateFormat = true;
                     }
                 } catch (Exception in){
-                    System.out.print("Plsease insert correct date: ");
                     checkDateFormat = false;
                 }
             }
