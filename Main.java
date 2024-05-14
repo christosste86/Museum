@@ -119,8 +119,8 @@ public class Main {
                         reservations[11][i] = (int) reservations[11][i] + tickets;
                         reservations[12][i] = (double) reservations[12][i] + customer.getPayment();
                     }
-                    tickets = 0;
                 }
+                tickets = 0;
             }
 
             //select if you want to continue with the reservation or see the schedule
@@ -140,22 +140,27 @@ public class Main {
             }
         }
 
+        System.out.println("--------------------------------------------------------------");
+
         //insert date from to date you see the reservations
 
         //generate the date to number
         scanner.nextLine(); //repair a problem with next scanner
-        System.out.print("Insert date from: ");
+        System.out.print("Print date data from: ");
         String dateF = scanner.nextLine();
         LocalDate datefr = LocalDate.parse(dateF, format);
         int intdateFrom = arrayDate(datefr);
 
         //System.out.println();
 
-        System.out.print("Insert date to: ");
+        System.out.print("Print date data to: ");
         String dateT = scanner.nextLine();
         LocalDate dateTo = LocalDate.parse(dateT, format);
         int intdateTo = arrayDate(dateTo);
 
+        System.out.println("--------------------------------------------------------------");
+
+        //print data
         System.out.println("Reservations from "+reservations[0][intdateFrom]+" - "+reservations[0][intdateTo]);
         for(int i = intdateFrom; i <= intdateTo; i++){
             if (reservations[0][i] == null){
@@ -221,7 +226,6 @@ public class Main {
             }
         }
         System.out.println();
-        System.out.println("--------------------------------------------------------------");
         for(int i = intdateFrom; i <= intdateTo; i++){
             if (reservations[8][i] == null){
                 System.out.printf("|%-30S|","");
@@ -246,7 +250,6 @@ public class Main {
             }
         }
         System.out.println();
-        System.out.println("");
         for(int i = intdateFrom; i <= intdateTo; i++){
             System.out.printf("|%-2s %-27S|",reservations[11][i],"Tickets");
         }
@@ -254,9 +257,10 @@ public class Main {
         for(int i = intdateFrom; i <= intdateTo; i++) {
             System.out.printf("|%-8s%-22S|", reservations[12][i],"Kč");
         }
+        System.out.println();
         System.out.println("--------------------------------------------------------------");
-        System.out.println("Summary of tickets: ");
-        System.out.println("Earnings: ");
+        System.out.println("Summary of tickets: " + tickets(reservations,intdateFrom,intdateTo));
+        System.out.println("Earnings: " + earnings(reservations, intdateFrom , intdateTo));
 
     }
     // Methods
@@ -296,4 +300,20 @@ public class Main {
         }
         return i;
     }
+
+    static int tickets(Object [][] reservations, int intdateFrom, int intdateTo){
+        int sum = 0;
+        for (; intdateFrom <= intdateTo;intdateFrom++){
+            sum = (int) reservations[11][intdateTo] + sum;
+        }
+        return sum;
+    }
+    static double earnings(Object [][] reservations, int intdateFrom, int intdateTo){
+        double sum = 0;
+        for (; intdateFrom <= intdateTo;intdateFrom++){
+            sum = (double) reservations[12][intdateTo] + sum;
+        }
+        return sum;
+    }
+
 }
