@@ -45,7 +45,13 @@ public class Main {
                 inputDate = scanner.nextLine();
                 try {
                     reservationDate = LocalDate.parse(inputDate, format);
-                    checkDateFormat = true;
+                    if (reservationDate.isBefore(LocalDate.now())) {
+                        checkDateFormat = false;
+                    }else if (reservationDate.isAfter(LocalDate.now().plusDays(30))){
+                        checkDateFormat = false;
+                    }else {
+                        checkDateFormat = true;
+                    }
                 } catch (Exception in){
                     System.out.print("Plsease insert correct date: ");
                     checkDateFormat = false;
